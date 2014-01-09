@@ -8,13 +8,13 @@ COMPILERS =
   stylus: require 'gulp-stylus'
 
 module.exports = (options={}) ->
-  es.through (file) ->
+  es.map (file, callback) ->
     compiler = COMPILERS[extension = path.extname(file.path).replace('.', '')]
-    return @queue(file) unless compiler
+    return callback(null, file) unless compiler
 
     es.readArray([file])
       .pipe(compiler(options[extension] or {}))
       .pipe(es.map (file, callback) =>
         file.path = gutil.replaceExtension(file.path, '.js')
-        @queue(file); callback()
+        callback(null, file)
       )
