@@ -13,7 +13,7 @@ module.exports = (options={}) ->
     return callback(null, file) unless compiler
 
     es.readArray([file])
-      .pipe(compiler(options[extension] or {}))
+      .pipe(compiler(options[extension] or {}).on('error', gutil.log))
       .pipe(es.map (file, replace_callback) =>
         file.path = gutil.replaceExtension(file.path, '.js')
         replace_callback(); callback(null, file)

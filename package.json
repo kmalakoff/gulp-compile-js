@@ -1,6 +1,6 @@
 {
   "name": "gulp-compile-js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Gulp plugin to compile a file into a JavaScript representation",
   "keywords": ["gulpplugin", "javascript", "coffeescript", "jade", "stylus"],
   "main": "index.coffee",
